@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.cursomc.domain.Cliente;
-import com.demo.cursomc.exceptions.CustomObjectNotFoundException;
 import com.demo.cursomc.repositories.ClienteRepository;
+import com.demo.cursomc.services.exceptions.CustomObjectNotFoundException;
 
 @Service
 public class ClienteService {

@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.cursomc.domain.Endereco;
-import com.demo.cursomc.exceptions.CustomObjectNotFoundException;
 import com.demo.cursomc.repositories.EnderecoRepository;
+import com.demo.cursomc.services.exceptions.CustomObjectNotFoundException;
 
 @Service
 public class EnderecoService {
