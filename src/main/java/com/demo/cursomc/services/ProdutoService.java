@@ -16,7 +16,7 @@ public class ProdutoService {
 	@Autowired
 	ProdutoRepository produtoRepository;
 	
-	public Produto buscar(Integer id) {
+	public Produto find(Integer id) {
 		Optional<Produto> produto = produtoRepository.findById(id);
 		return produto.orElse(null);
 		
