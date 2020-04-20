@@ -3,6 +3,7 @@ package com.demo.cursomc;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -14,6 +15,7 @@ import com.demo.cursomc.domain.Cidade;
 import com.demo.cursomc.domain.Cliente;
 import com.demo.cursomc.domain.Endereco;
 import com.demo.cursomc.domain.Estado;
+import com.demo.cursomc.domain.ItemPedido;
 import com.demo.cursomc.domain.Pagamento;
 import com.demo.cursomc.domain.PagamentoComBoleto;
 import com.demo.cursomc.domain.PagamentoComCartao;
@@ -26,6 +28,7 @@ import com.demo.cursomc.repositories.CidadeRepository;
 import com.demo.cursomc.repositories.ClienteRepository;
 import com.demo.cursomc.repositories.EnderecoRepository;
 import com.demo.cursomc.repositories.EstadoRepository;
+import com.demo.cursomc.repositories.ItemPedidoRepository;
 import com.demo.cursomc.repositories.PagamentoRepository;
 import com.demo.cursomc.repositories.PedidoRepository;
 import com.demo.cursomc.repositories.ProdutoRepository;
@@ -57,6 +60,9 @@ public class CursomcApplication implements CommandLineRunner {
 	
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 	
 	
 
@@ -132,7 +138,22 @@ public class CursomcApplication implements CommandLineRunner {
 		
 		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
 		pagamentoRepository.saveAll(Arrays.asList(pagt1, pagt2));
+		
+		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.00);
+		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
+		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
+		
+		
+		ped1.getItemPedido().addAll(Arrays.asList(ip1, ip2));
+		ped2.getItemPedido().addAll(Arrays.asList(ip3));
+		
+		
+		p1.getItemPedido().addAll(Arrays.asList(ip1));
+		p2.getItemPedido().addAll(Arrays.asList(ip3));
+		p3.getItemPedido().addAll(Arrays.asList(ip2));
 
+		
+		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
 
 	}
 
